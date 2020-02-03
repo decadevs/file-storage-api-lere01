@@ -66,3 +66,13 @@ class TestView(TestCase):
             bkt_update, format='json'
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+
+    def test_api_can_delete_bucketlist(self):
+        bkt = Bucket.objects.get()
+        response = self.client.delete(
+            reverse('detail', kwargs={'pk': bkt.id}),
+            format='json',
+            follow=True)
+
+        self.assertEquals(response.status_code, status.HTTP_204_NO_CONTENT)
