@@ -7,20 +7,18 @@ from rest_framework import status
 from django.utils import timezone
 from django.urls import reverse
 
+
 class TestModel(TestCase):
 
     """This class defines the test suite for the model."""
 
     def setUp(self):
 
-        """Define the test client and other test variables."""
-
         self.bkt_name = "my_bucket"
         # self.bkt_create = timezone.now()
-        self.bucket = Bucket(name = self.bkt_name)
+        self.bucket = Bucket(name=self.bkt_name)
 
     def test_bucket_creation(self):
-
         """Test that a bucket is properly created from the model"""
 
         initial_count = Bucket.objects.count()
@@ -29,25 +27,32 @@ class TestModel(TestCase):
         self.assertNotEqual(initial_count, current_count)
 
 # Define this after the ModelTestCase
+
+
 class TestView(TestCase):
 
     """Test suite for the api views."""
 
     def setUp(self):
 
-        """Define the test client and other test variables."""
+        client = APIClient()
+        self.client = client
+        data = {'name': 'Abdulfatai Okeremeta'}
+        self.data = data
+        url = reverse('create')
 
-        self.client = APIClient()
-        self.bkt_data = {'name': 'Go to Ibiza'}
-
-        self.response = self.client.post(
-            reverse('create'),
-            self.bkt_data,
-            format = "json"
-            )
+        response = client.post(url, data, format="json")
+        self.response = response
 
     def test_successful_bucket_creation(self):
 
-        """Test the api has bucket creation capability."""
-
         self.assertEqual(self.response.status_code, status.HTTP_201_CREATED)
+
+    def test_get_bucket(self):
+
+        bkt = Bucket.objects.get()
+        response = self.client.get(
+            reverse('detail', kwargs={'pk': bkt.id}), format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertContains(response, bkt)
