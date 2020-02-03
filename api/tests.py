@@ -44,15 +44,35 @@ class TestView(TestCase):
         response = client.post(url, data, format="json")
         self.response = response
 
+    
     def test_successful_bucket_creation(self):
-
         self.assertEqual(self.response.status_code, status.HTTP_201_CREATED)
 
+    
     def test_get_bucket(self):
-
         bkt = Bucket.objects.get()
         response = self.client.get(
             reverse('detail', kwargs={'pk': bkt.id}), format="json")
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertContains(response, bkt)
+
+    
+    def test_update_bucket(self):
+        bkt = Bucket.objects.get()
+        bkt_update = {'name': 'Kolapo Ishola'}
+        response = self.client.put(
+            reverse('detail', kwargs={'pk': bkt.id}),
+            bkt_update, format='json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+
+    def test_api_can_delete_bucketlist(self):
+        bkt = Bucket.objects.get()
+        response = self.client.delete(
+            reverse('detail', kwargs={'pk': bkt.id}),
+            format='json',
+            follow=True)
+
+        self.assertEquals(response.status_code, status.HTTP_204_NO_CONTENT)
