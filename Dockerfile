@@ -14,22 +14,15 @@ ENV PYTHONUNBUFFERED 1
 ADD . /app
 WORKDIR /app
 
-# copy requirements file
-# COPY 
-# COPY requirements.txt ./
-# COPY startup.sh ./
-# COPY manage.py ./
-
 # Dependencies
 RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 
 # expose ports
-EXPOSE 8100
+EXPOSE 8000
 
 
 # final command
-# CMD ["./startup.sh"]
-CMD python manage.py runserver 0.0.0.0:8100
+CMD python manage.py runserver 0.0.0.0:8000
 
