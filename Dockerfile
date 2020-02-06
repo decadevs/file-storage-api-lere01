@@ -1,7 +1,7 @@
 # Docker File
 
 # Base image
-FROM python:3.6.1
+FROM python:3
 
 # Author
 LABEL version = "Faith O. Oyedemi"
@@ -19,10 +19,6 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 
-# expose ports
-EXPOSE 8000
-
-
 # final command
-CMD python manage.py runserver 0.0.0.0:8000
+# CMD python manage.py runserver 0.0.0.0:8000
 
