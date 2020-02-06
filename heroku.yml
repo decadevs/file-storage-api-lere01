@@ -1,8 +1,8 @@
 setup:
-    addons:
-        - plan: heroku-mongolab
+  addons:
+    - plan: heroku-mongolab
 
-build:
+  build:
     docker:
       web: Dockerfile
   run:
