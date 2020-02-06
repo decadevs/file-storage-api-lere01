@@ -14,7 +14,7 @@ jobs:
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/mongo:latest
-        port: 27017:27017
+        # port: 27017:27017
         environment:
           - MONGODB_USERNAME: "myrootuser"
           - MONGODB_PASSWORD: "mypassword"
