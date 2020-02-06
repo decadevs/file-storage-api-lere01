@@ -1,8 +1,6 @@
-Include/
-Lib/
-Scripts/
-pyvenv.cfg
 __pycache__/
 db.sqlite3
 .env
 data.json
+venv
+.vscode

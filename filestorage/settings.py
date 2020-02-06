@@ -81,6 +81,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'buckets_db',
+        'HOST': 'db:27017'
     }
 }
 
@@ -143,4 +144,4 @@ REST_FRAMEWORK = {
 }
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+# django_heroku.settings(locals())

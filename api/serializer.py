@@ -5,4 +5,7 @@ from .models import Bucket
 class BucketSerializer(ModelSerializer):
     class Meta:
         model = Bucket
-        fields = ('id', 'name', 'created_at')
+        fields = '__all__'
+
+    def create(self, validated_data):
+        return Bucket.objects.create(**validated_data)
