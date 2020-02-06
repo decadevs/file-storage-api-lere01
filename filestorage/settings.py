@@ -25,8 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '@24koi(7neh!u0oti$j$qh_o-k2n-dp-p5p5&1$#rj2*k6xds7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG")
-
+DEBUG = config("DEBUG", cast=bool)
 ALLOWED_HOSTS = ['*']
 
 
@@ -77,15 +76,7 @@ WSGI_APPLICATION = 'filestorage.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        **generate_url(DEBUG, config("MONGODB_URI", default=""))
-        
-    }
-}
-
+DATABASES = generate_url(DEBUG,config("MONGODB_URI", default=""))
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
