@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'buckets_db',
         'HOST': 'db',
-        'PORT': '27017',
+        'PORT': 27017
     }
 }
 
