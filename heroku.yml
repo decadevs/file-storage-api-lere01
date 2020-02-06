@@ -5,4 +5,4 @@ build:
   docker:
     web: Dockerfile
 run:
-  web: gunicorn filestorage.wsgi:application 0.0.0.0:$PORT --log-file -
+  web: gunicorn filestorage.wsgi:application 0.0.0.0:$PORT 
