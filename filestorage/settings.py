@@ -81,7 +81,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'buckets_db',
-        'HOST': 'db:27017'
+        'HOST': 'db',
+        'PORT': 27017
     }
 }
 
