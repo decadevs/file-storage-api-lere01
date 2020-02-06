@@ -1,9 +1,8 @@
 setup:
   addons:
     - plan: heroku-mongolab
-
-  build:
-    docker:
-      web: Dockerfile
-  run:
-    web: gunicorn filestorage.wsgi --log-file -
+build:
+  docker:
+    web: Dockerfile
+run:
+  web: gunicorn filestorage.wsgi --log-file -
