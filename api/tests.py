@@ -51,8 +51,8 @@ class TestView(TestCase):
     
     def test_get_bucket(self):
         bkt = Bucket.objects.get()
-        response = self.client.get(
-            reverse('detail', kwargs={'pk': bkt.id}), format="json")
+        url = reverse('detail', kwargs = {'bucket_id': bkt.id})
+        response = self.client.get(url, format="json")
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertContains(response, bkt)
@@ -62,7 +62,7 @@ class TestView(TestCase):
         bkt = Bucket.objects.get()
         bkt_update = {'name': 'Kolapo Ishola'}
         response = self.client.put(
-            reverse('detail', kwargs={'pk': bkt.id}),
+            reverse('detail', kwargs={'bucket_id': bkt.id}),
             bkt_update, format='json'
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -71,8 +71,7 @@ class TestView(TestCase):
     def test_api_can_delete_bucketlist(self):
         bkt = Bucket.objects.get()
         response = self.client.delete(
-            reverse('detail', kwargs={'pk': bkt.id}),
-            format='json',
+            reverse('detail', kwargs={'bucket_id': bkt.id}),
             follow=True)
 
         self.assertEquals(response.status_code, status.HTTP_204_NO_CONTENT)
