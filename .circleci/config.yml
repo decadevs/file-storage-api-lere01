@@ -16,8 +16,8 @@ jobs:
       - image: circleci/mongo:latest
         # port: 27017:27017
         environment:
-          - MONGODB_USERNAME: "myrootuser"
-          - MONGODB_PASSWORD: "mypassword"
+          - MONGODB_USERNAME: "admin"
+          - MONGODB_PASSWORD: "admin"
 
     working_directory: ~/repo
 
